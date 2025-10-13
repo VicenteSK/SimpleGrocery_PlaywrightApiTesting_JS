@@ -1,0 +1,25 @@
+{
+  "name": "simplegrocery_playwrightapitesting",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:api": "npx playwright test tests/api.spec.js",
+    "show-report": "npx playwright show-report playwright-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.56.0"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "playwright": "^1.55.1",
+    "playwright-core": "^1.55.1"
+  },
+  "description": ""
+}
