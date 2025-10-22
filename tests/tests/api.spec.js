@@ -8,7 +8,7 @@ test.describe.serial('Simple Grocery Store API - flujo de Bruno', () => {
   let orderId;
 
   const BASE = 'https://simple-grocery-store-api.click';
-  const LOGIN_ENDPOINT = '/api-clients'; // <-- reemplaza si tu collection usa otro endpoint
+  const LOGIN_ENDPOINT = '/api-clients'; 
 
   test.beforeAll(async () => {
     apiContext = await request.newContext({ baseURL: BASE });
@@ -41,8 +41,8 @@ test.describe.serial('Simple Grocery Store API - flujo de Bruno', () => {
   test('2) Crear carrito (cart)', async () => {
     const res = await apiContext.post('/carts', {
       headers: { Authorization: `Bearer ${accessToken}` }
-      // body vacío según tu colección
     });
+
     expect(res.status()).toBe(201);
     const body = await res.json();
     cartId = body.cartId;
@@ -57,7 +57,7 @@ test.describe.serial('Simple Grocery Store API - flujo de Bruno', () => {
   
 
   test('3) Agregar item al carrito', async () => {
-    const productId = 1225; // usa un productId válido de tu entorno (ajusta)
+    const productId = 1225; // Id de referencia
     const res = await apiContext.post(`/carts/${cartId}/items`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -71,6 +71,13 @@ test.describe.serial('Simple Grocery Store API - flujo de Bruno', () => {
     expect(body).toBeDefined();
     // si la API devuelve cartId:
     if (body.cartId) expect(body.cartId).toBe(cartId);
+
+    // 🟢 Log detallado
+    console.log('\n==============================');
+    console.log('✅ ITEM AGREGADO AL CARRITO');
+    console.log('CartId:', cartId);
+    console.log('Producto agregado:', body.items ? body.items[0] : `productId ${productId}`);
+    console.log('==============================\n');
   });
 
   test('4) Crear order (usando el cartId)', async () => {
@@ -85,6 +92,13 @@ test.describe.serial('Simple Grocery Store API - flujo de Bruno', () => {
     const body = await res.json();
     orderId = body.orderId;
     expect(orderId).toBeTruthy();
+
+    // 🟢 Log detallado
+    console.log('\n==============================');
+    console.log('✅ ORDEN CREADA CORRECTAMENTE');
+    console.log('OrderId:', orderId);
+    console.log('CartId:', cartId);
+    console.log('==============================\n');
   });
 
   test('5) Asociar cart a order (PATCH)', async () => {
@@ -98,6 +112,12 @@ test.describe.serial('Simple Grocery Store API - flujo de Bruno', () => {
     });
     expect(res.status()).toBe(204);
     // no await res.json() aquí porque es 204
+    // 🟢 Log detallado
+    console.log('\n==============================');
+    console.log('✅ CARRITO ASOCIADO A ORDEN (PATCH)');
+    console.log('OrderId:', orderId);
+    console.log('CartId:', cartId);
+    console.log('==============================\n');
   });
 
   test('6) GET order y validar', async () => {
@@ -108,14 +128,19 @@ test.describe.serial('Simple Grocery Store API - flujo de Bruno', () => {
 
   const body = await res.json();
 
-  // algunos devuelven id, no orderId
   const returnedOrderId = body.orderId || body.id;
   expect(returnedOrderId).toBe(orderId);
+  if (body.cartId) expect(body.cartId).toBe(cartId);
 
-  if (body.cartId) {
-    expect(body.cartId).toBe(cartId);
-  } else {
-    console.warn('⚠️ GET /orders no devuelve cartId — validación opcional omitida.');
-  }
+    // 🟢 Log detallado
+    console.log('\n==============================');
+    console.log('✅ VALIDACIÓN FINAL DE ORDEN');
+    console.table([
+      { Campo: 'Order ID', Valor: orderId },
+      { Campo: 'Cart ID', Valor: cartId },
+      { Campo: 'Cliente', Valor: body.customerName || 'N/A' },
+      { Campo: 'Comentario', Valor: body.comment || 'N/A' }
+    ]);
+    console.log('==============================\n');
 });
 });
