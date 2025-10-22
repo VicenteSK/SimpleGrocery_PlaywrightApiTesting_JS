@@ -1,7 +1,5 @@
 # 🧪 Simple Grocery Store API Testing with Playwright
 
-**Autor:** Vicente Valenzuela  
-**Rol:** QA Automation Trainee / Tester Manual & Automation  
 **Stack Tecnológico:** Playwright | JavaScript | Node.js | API Testing | Bruno | HTML Reporter  
 
 ---
@@ -52,13 +50,13 @@ El conjunto de pruebas ejecuta los siguientes pasos de forma **secuencial**:
 
 ## 🧩 Estructura del Proyecto
 
-📦 SimpleGrocery_PlaywrightApiTesting_JS/
-┣ 📁 tests/
-┃ ┗ api.spec.js
-┣ 📄 playwright.config.js
-┣ 📄 package.json
-┣ 📄 .gitignore
-┗ 📄 README.md
+**`📦 SimpleGrocery_PlaywrightApiTesting_JS/`**
+*  **`┣ 📁 tests/`**
+*  **`┃ ┗ api.spec.js`**
+*  **`┣ 📄 playwright.config.js`**
+*  **`┣ 📄 package.json`**
+*  **`┣ 📄 .gitignore`**
+*  **`┗ 📄 README.md`**
 
 ## 🧪 Ejecución del Proyecto
 
