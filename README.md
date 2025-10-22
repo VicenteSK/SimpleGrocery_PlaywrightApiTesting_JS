@@ -60,19 +60,20 @@ El conjunto de pruebas ejecuta los siguientes pasos de forma **secuencial**:
 
 ## 🧪 Ejecución del Proyecto
 
-### 1️⃣ Instalar dependencias:
+## 1️⃣ Instalar dependencias:
 ```bash
 npm install
+```
 
 ### 2️⃣ Ejecutar las pruebas:
-
+```
 npx playwright test
-
+```
 ### 3️⃣ Ver reporte HTML:
-
+```
 npx playwright show-report
-
-📊 Cobertura de Pruebas
+```
+## 📊 Cobertura de Pruebas
 
 6 tests automatizados
 
@@ -82,13 +83,9 @@ Flujo completo de creación de orden validado
 
 Ejecución estable en < 10 segundos
 
-📊 Reporte de Ejecución
+---
+## 💡 Aprendizajes Destacados
 
-<img width="1243" height="626" alt="image" src="https://github.com/user-attachments/assets/aa6d479b-dda9-404b-9572-484f507934a2" />
-
-
-
-💡 Aprendizajes Destacados
 
 Transición de pruebas manuales en Bruno a pruebas automatizadas en Playwright.
 
@@ -97,4 +94,10 @@ Implementación de flujos secuenciales API REST.
 Uso de variables dinámicas y validaciones condicionales.
 
 Mejora en el control de errores y logging de respuestas.
+
+## 📊 Reporte de Ejecución
+
+![Test Report](docs/reporte_playwright_ApiTesting.png)
+
+
 
